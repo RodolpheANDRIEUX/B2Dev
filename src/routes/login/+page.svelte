@@ -5,4 +5,3 @@
     <button type="submit">Log In</button>
 </form>
 
-<a href="/user-auth">User Auth</a>

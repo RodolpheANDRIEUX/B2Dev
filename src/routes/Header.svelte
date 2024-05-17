@@ -14,16 +14,12 @@
 
 	<nav >
 		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-
 			{#if $User != null}
 				<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
 					<a href="/profile">profile</a>
 				</li>
 			{:else}
-				<li aria-current={$page.url.pathname === '/register' ? 'page' : undefined}>
+				<li id="register" aria-current={$page.url.pathname === '/register' ? 'page' : undefined}>
 					<a href="/register">Register</a>
 				</li>
 				<li aria-current={$page.url.pathname === '/login' ? 'page' : undefined}>
@@ -91,7 +87,7 @@
 		transition: .3s;
 	}
 
-	li[aria-current='page'] {
+	#register {
 		background-color: var(--color-theme-1);
 	}
 

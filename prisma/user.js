@@ -48,6 +48,7 @@ export async function loginUser(email, password) {
 
     return {token};
   } catch (error) {
+    console.log('error caught', error);
     return error;
   }
 }

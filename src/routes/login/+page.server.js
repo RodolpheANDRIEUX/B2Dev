@@ -4,6 +4,8 @@ import {loginUser} from "/prisma/user.js";
 
 export const actions = {
   login: async ({cookies, request}) => {
+    console.log('login action');
+
     const formData = Object.fromEntries(await request.formData());
     const {email, password} = formData;
 

@@ -6,7 +6,7 @@ Projet Dev B2
 
 Everything you need to start contributing to this project is to clone the repository and install the dependencies. <br>
 
-You ll require `node` and `npm` to be installed on your machine.    <br>
+You ll require `node` and `npm` to be installed on your machine.<br>
 
 ```bash
 git clone
@@ -16,13 +16,11 @@ cd B2Dev
 npm install
 ```
 
-then create prisma database
+create the `.env` file and then create prisma database
 
 ```bash 
 npx prisma db push
 ```
-
-you'll find the project in the `src` folder.
 
 ## Start the project    
 

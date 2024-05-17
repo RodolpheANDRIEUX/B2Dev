@@ -4,10 +4,10 @@
 
 <div class="absolute-box">
     <h2>Vos bagarres livrées en un clic</h2>
-    menu deroulant pour choisir le type de bagarre
     <form action="/fighters">
+        <img src="/src/lib/img/pin.svg" alt="pin">
         <select name="city">
-            <option value="" <svg> selected disabled>Choisissez une ville</option>
+            <option value=""  selected disabled>Choisissez une ville</option>
             <option value="paris">Paris</option>
             <option value="marseille">Marseille</option>
             <option value="lyon">Lyon</option>
@@ -75,32 +75,43 @@
         background-color: var(--color-bg-1);
         color: var(--color-text);
         width: 20rem;
-        padding: .65rem;
+        padding: .65rem .65rem .65rem 3rem;
         border: none;
         font-size: 1.5rem;
         font-weight: 600;
         cursor: pointer;
-        border-radius: 0;
-    }
-
-    select option {
         border-radius: 0;
     }
 
     button {
         background-color: var(--color-theme-1);
         color: var(--color-theme-3);
-        margin-left: .65rem;
-        padding: .7rem;
+        margin-left: .5rem;
+        padding: .9rem;
         border: none;
         border-radius: 10px;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: 600;
         cursor: pointer;
+        transform: translate(0, -1px);
         transition: .2s;
     }
 
     button:hover {
         opacity: .6;
+    }
+
+    form {
+        position: relative;
+    }
+
+    form img {
+        position: absolute;
+        Z-index: 1;
+        top: 50%;
+        left: 10px;
+        transform: translate(0, -50%);
+        height: 2rem;
+        width: 2rem;
     }
 </style>
