@@ -1,5 +1,5 @@
 import {fail, redirect} from "@sveltejs/kit";
-import {setAuthToken} from "../utils.js";
+import {setAuthToken} from "$lib/utils.js";
 import {loginUser} from "/prisma/user.js";
 
 export const actions = {
@@ -16,7 +16,7 @@ export const actions = {
 
     setAuthToken({cookies, token});
 
-    throw redirect(302, "/user-auth")
+    throw redirect(302, "/")
   }
 }
 

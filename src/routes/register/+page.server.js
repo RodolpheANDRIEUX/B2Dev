@@ -1,6 +1,6 @@
 import {fail, redirect} from "@sveltejs/kit";
-import {setAuthToken} from "../utils.js";
-import {createUser} from "../../../../prisma/user.js";
+import {setAuthToken} from "$lib/utils.js";
+import {createUser} from "/prisma/user.js";
 
 export const actions = {
   register:  async ({cookies, request}) => {
