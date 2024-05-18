@@ -20,18 +20,13 @@ export const handle = async ({event, resolve}) => {
         }
       });
       if (user) {
-        console.log('User found');
         event.locals.user = user;
-        User.set(user);
       }
     } catch (error) {
-      console.log(error);
+      console.log('error caught ' + error);
     }
-  } else {
-    console.log('No auth cookie');
-    event.locals.user = null;
-    User.set(null);
   }
+
   return await resolve(event);
 };
 

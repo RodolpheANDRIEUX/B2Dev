@@ -1,33 +1,27 @@
 <script>
-	import { User } from '$lib/store.js';
+	import Menu from "./menu.svelte";
 	import { page } from '$app/stores';
-
-	console.log('user is ' +  $User);
+	export let data;
 </script>
 
 <header>
+	<Menu />
+
 	<div id="logo">
 		<a href="/">
-			<img src='/src/lib/img/logoTxtInline.png' alt="Uber Bagarre" />
+			<img src='/src/lib/img/logoLight.png' alt="EV3NT" />
 		</a>
 	</div>
 
-	<nav >
-		<ul>
-			{#if $User != null}
+	{#if data.id}
+		<nav>
+			<ul>
 				<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
 					<a href="/profile">profile</a>
 				</li>
-			{:else}
-				<li id="register" aria-current={$page.url.pathname === '/register' ? 'page' : undefined}>
-					<a href="/register">Register</a>
-				</li>
-				<li aria-current={$page.url.pathname === '/login' ? 'page' : undefined}>
-					<a href="/login">Login</a>
-				</li>
-			{/if}
-		</ul>
-	</nav>
+			</ul>
+		</nav>
+	{/if}
 </header>
 
 <style>
@@ -35,32 +29,34 @@
 		position: fixed;
 		z-index: 10;
 		width: 100%;
+		height: 60px;
 		display: flex;
-		justify-content: space-between;
+		justify-content: start;
 		align-items: center;
 		background: var(--color-theme-3);
-		height: 70px;
 		view-transition-name: header;
 	}
 
-	#logo a {
+	#logo {
 		display: flex;
 		align-items: center;
-		justify-content: center;
 		height: 100%;
-	}
-
-	#logo img {
 		margin-left: 3vw;
-		height: 2.2em;
-		object-fit: contain;
+		justify-content: start;
 	}
 
 	nav {
 		display: flex;
-		justify-content: center;
+		align-items: center;
+		margin-left: auto;
+		justify-content: flex-end;
 		transition: background-color .3s linear;
 		view-transition-name: navbar;
+	}
+
+	#logo img {
+		height: 2.2em;
+		object-fit: contain;
 	}
 
 	ul {
@@ -87,10 +83,6 @@
 		transition: .3s;
 	}
 
-	#register {
-		background-color: var(--color-theme-1);
-	}
-
 	nav a {
 		display: flex;
 		height: 100%;
@@ -99,7 +91,6 @@
 		justify-content: center;
 		color: var(--color-text);
 		font-weight: 550;
-		font-size: .9rem;
 		text-decoration: none;
 		transition: color 0.2s linear;
 	}

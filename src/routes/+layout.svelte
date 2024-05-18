@@ -1,4 +1,5 @@
 <script>
+	export let data;
 	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
 	import './styles.css';
@@ -15,7 +16,7 @@
 </script>
 
 <div class="app">
-	<Header />
+	<Header {data}/>
 
 	<main>
 		<slot />
@@ -29,6 +30,20 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
+	}
+
+	.app::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-image: url("/src/lib/img/noise.png");
+		background-size: 64px 64px;
+		background-repeat: repeat;
+		opacity: 0.08;
+		z-index: -1;
 	}
 
 	main {

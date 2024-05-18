@@ -1,32 +1,140 @@
-<img src="/src/lib/img/mmaWallpaper.jpg" alt="backgroundImg">
-<div id="background-noise"></div>
-<div id="background-mask"></div>
+<script>
+    import Login from './login.svelte';
+    import Register from './register.svelte';
+    export let form;
 
-<div class="absolute-box">
-    <h2>Vos bagarres livrées en un clic</h2>
-    <form action="/fighters">
-        <img src="/src/lib/img/pin.svg" alt="pin">
-        <select name="city">
-            <option value=""  selected disabled>Choisissez une ville</option>
-            <option value="paris">Paris</option>
-            <option value="marseille">Marseille</option>
-            <option value="lyon">Lyon</option>
-            <option value="toulouse">Toulouse</option>
-            <option value="nice">Nice</option>
-            <option value="nantes">Nantes</option>
-            <option value="strasbourg">Strasbourg</option>
-            <option value="montpellier">Montpellier</option>
-            <option value="bordeaux">Bordeaux</option>
-            <option value="lille">Lille</option>
-        </select>
-        <button type="submit">Trouver un bagarreur</button>
-    </form>
+    let login = true;
+</script>
+
+<div class="flex-box">
+    <div class="catch">
+        <h2>Creez et gerez vos evenements en un clic</h2>
+        <form class="form-select" method="POST" action="?/discover">
+            <img src="/src/lib/img/pin.svg" alt="pin">
+            <select name="city">
+                <option value=""  selected disabled>Choisissez une ville</option>
+                <option value="paris">Paris</option>
+                <option value="marseille">Marseille</option>
+                <option value="lyon">Lyon</option>
+                <option value="toulouse">Toulouse</option>
+                <option value="nice">Nice</option>
+                <option value="nantes">Nantes</option>
+                <option value="strasbourg">Strasbourg</option>
+                <option value="montpellier">Montpellier</option>
+                <option value="bordeaux">Bordeaux</option>
+                <option value="lille">Lille</option>
+            </select>
+            <button>Decouvrir</button>
+        </form>
+    </div>
+
+    <div class="login">
+        <label id="toggle" for="toggle-login">
+            <input type="checkbox" id="toggle-login" bind:checked={login}>
+            <span id="toggle-moving" style="transform: translate({login ? '0' : '120px'}, 0);">{login ? 'Se connecter' : 'S\'inscrire'}</span>
+            <span>Se connecter</span>
+            <span>S'inscrire</span>
+        </label>
+
+        {#if login}
+            <Login {form}/>
+        {:else}
+            <Register {form}/>
+        {/if}
+    </div>
 </div>
 
 
 <style>
+
+
+    .login {
+        position: relative;
+    }
+
+    #toggle {
+        position: absolute;
+        top: 0;
+        right: 50%;
+        transform: translate(50%, 0);
+        cursor: pointer;
+        transition: .3s;
+        width: 250px;
+        height: 42px;
+        background: var(--color-bg-3);
+        border-radius: 21px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #toggle span {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 4px;
+        height: 34px;
+        width: 120px;
+        border-radius: 17px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .3s;
+    }
+
+    #toggle-moving {
+        position: absolute;
+        background: var(--color-bg-0);
+        box-shadow: var(--color-theme-3) 0 0 5px;
+        color: var(--color-theme-1);
+    }
+
+    #toggle-login {
+        display: none;
+    }
+
+    .catch {
+        position: relative;
+        z-index: 1;
+        width: 50%;
+        padding: 0 2rem;
+    }
+
+    .flex-box {
+        position: absolute;
+        width: 90vw;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, 0);
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        margin-top: 300px;
+    }
+
+    @media (max-width: 1100px) {
+        .flex-box {
+            flex-direction: column;
+            margin-top: 100px;
+        }
+
+        .catch {
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        .login {
+            margin-top: 2rem;
+        }
+
+        .form-select {
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+    }
+
     img {
         position: absolute;
+        opacity: .6;
         z-index: -3;
         left: 0;
         top: 70px;
@@ -35,48 +143,20 @@
         object-fit: cover;
     }
 
-    #background-noise {
-        position: absolute;
-        z-index: -2;
-        left: 0;
-        top: 70px;
-        height: calc(100vh - 70px);
-        width: 100%;
-        background-image: url("$lib/img/noise.png");
-        background-size: 64px 64px;
-        background-repeat: repeat;
-        opacity: .3;
-    }
-
-    #background-mask {
-        position: absolute;
-        z-index: -1;
-        left: 0;
-        top: 70px;
-        height: calc(100vh - 70px);
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .absolute-box {
-        position: absolute;
-        top: 20vh;
-        left: 10vw;
-    }
-
     h2 {
-        color: var(--color-bg-1);
+        color: var(--color-theme-3);
         font-size: 3rem;
         font-weight: 600;
-        margin: 2rem 300px 2rem 0;
+        margin: 2rem 0;
     }
 
     select {
-        background-color: var(--color-bg-1);
+        background-color: var(--color-bg-0);
         color: var(--color-text);
+        border: none;
+        border-bottom: var(--color-theme-1) 2px solid;
         width: 20rem;
         padding: .65rem .65rem .65rem 3rem;
-        border: none;
         font-size: 1.5rem;
         font-weight: 600;
         cursor: pointer;
@@ -85,11 +165,11 @@
 
     button {
         background-color: var(--color-theme-1);
-        color: var(--color-theme-3);
+        color: var(--color-bg-0);
         margin-left: .5rem;
         padding: .9rem;
         border: none;
-        border-radius: 10px;
+        border-radius: 5px;
         font-size: 1.2rem;
         font-weight: 600;
         cursor: pointer;
@@ -97,18 +177,26 @@
         transition: .2s;
     }
 
+    @media (max-width: 520px) {
+        select {
+            width: 90%;
+            margin-bottom: 1rem
+        ;
+        }
+    }
+
     button:hover {
         opacity: .6;
     }
 
-    form {
+    .form-select {
         position: relative;
     }
 
-    form img {
+    .form-select img {
         position: absolute;
         Z-index: 1;
-        top: 50%;
+        top: 25px;
         left: 10px;
         transform: translate(0, -50%);
         height: 2rem;

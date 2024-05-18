@@ -9,18 +9,7 @@
         <img id="ynov-footer-logo" src='/src/lib/img/ynov-logo.png' alt="Logo d'ynov">
     </picture>
     <div class="flex-div">
-        <p>© 2024 - Rodolphe ANDRIEUX</p>
-        <div id="flex-icons">
-            <a href="https://www.linkedin.com/in/rodolphe-andrieux" target="_blank">
-                <img src={linkedin} alt="Logo LinkedIn" width="40" height="40">
-            </a>
-            <a href="https://github.com/RodolpheANDRIEUX" target="_blank">
-                <img src={github} alt="Logo GitHub" width="40" height="40">
-            </a>
-        </div>
-    </div>
-    <div class="flex-div">
-        <p>© 2024 - Arthur DEVIENNE</p>
+        <p>© 2024 - Rodolphe ANDRIEUX - Arthur DEVIENNE</p>
         <div id="flex-icons">
             <a href="https://www.linkedin.com/in/rodolphe-andrieux" target="_blank">
                 <img src={linkedin} alt="Logo LinkedIn" width="40" height="40">
@@ -64,7 +53,7 @@
 
     footer #ynov-footer-logo {
         padding: 0 30px;
-        background: var(--color-theme-1);
+        background: var(--color-theme-2);
         height: 110px;
         background-blend-mode: exclusion;
     }
