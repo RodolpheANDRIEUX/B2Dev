@@ -14,8 +14,8 @@
     let targetTranslateX = 0;
     let targetTranslateY = 0;
     let targetRotation = 0;
-    let currentTranslateX = -45;
-    let currentTranslateY = 10;
+    let currentTranslateX = -50;
+    let currentTranslateY = 0;
     let initialTranslateX = 0;
     let initialTranslateY = 0;
 
@@ -198,6 +198,7 @@
     #outer-card {
         position: fixed;
         top: 0;
+        left: 0;
         height: 100vh;
         width: 100vw;
         perspective: 500px;
@@ -208,8 +209,8 @@
         height: 50vh;
         width: 50vh;
         border-radius: 3vh;
-        left: 50%;
-        bottom: 15%;
+        left: 50vw;
+        bottom: 15vh;
         transform: translate(-50%, 0);
         transition: 80ms ease-out;
     }
@@ -237,9 +238,8 @@
     }
 
     .backCard {
-        background: #131313;
-        background: url("https://wallpaperaccess.com/full/3954357.jpg") center;
-        background-size: cover;
+        background-size: 50%;
+        background: var(--color-bg-0) url("/src/lib/img/logo.png") no-repeat center;
         border-radius: 3vh;
         box-shadow: inset 0 0 0 8px #13131380;
     }
@@ -247,8 +247,8 @@
     #face {
         height: 100%;
         width: 100%;
-        background: url("https://cdn.discordapp.com/attachments/399312290333327360/1170028348479643789/image.png?ex=65578cd0&is=654517d0&hm=4c4b918818372636dbe9a9826134033eae48b2390ae868afa6b064f2df1dc057&") center;
-        background-size: 180%;
+        background: url("/src/lib/img/logoLight.png") center;
+        background-size: cover;
         backface-visibility: hidden;
     }
 
@@ -268,6 +268,7 @@
         position: absolute;
         bottom: 10%;
         left: 50%;
-        font-size: 1.5rem;
+        font-size: 2rem;
+        font-weight: 600;
     }
 </style>
