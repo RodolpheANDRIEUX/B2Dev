@@ -1,38 +1,38 @@
 <script>
     export let form;
+    import { enhance } from '$app/forms';
     import { fly } from "svelte/transition";
-    import { cubicOut } from "svelte/easing";
+    import {slide} from "svelte/transition";
+    import {cubicOut, quintOut} from "svelte/easing";
 </script>
 
-<form class="form-login" method="POST"
-      action="/?/login"
+<form class="form-login" method="POST" action="/?/login" use:enhance
       in:fly={{ delay: 200, x: -200, duration: 300, easing: cubicOut }}
       out:fly={{ x: -200, duration: 200, easing: cubicOut }}>
 
-    {#if form?.error }<p class="error">{form.error}</p>{/if}
+    {#if form?.error }<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
+        {form.error}
+    </p>{/if}
 
-    {#if form?.missing && form?.missing.email}<p class="error">The email field is required</p>{/if}
+    {#if form?.missing && form?.missing.email}<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
+        The email field is required
+    </p>{/if}
     <input name="email" type="email" placeholder="Email Address" value={form?.email ?? ''}
            style="border-bottom: {(form?.missing && form?.missing.email) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
 
-    {#if form?.missing && form?.missing.password}<p class="error">You forgot the password you fking idiot</p>{/if}
+    {#if form?.missing && form?.missing.password}<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
+        You forgot the password you fking idiot
+    </p>{/if}
     <input type="password" name="password" placeholder="Password"
            style="border-bottom: {(form?.missing && form?.missing.password) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
 
-    <button formaction="/?/login">Log In</button>
+    <button>Log In</button>
 </form>
 
 <style>
     .error {
         color: red;
         font-size: 1rem;
-        font-weight: 600;
-        margin: 0;
-    }
-
-    h1 {
-        color: var(--color-theme-3);
-        font-size: 3rem;
         font-weight: 600;
         margin: 0;
     }
@@ -44,6 +44,7 @@
         align-items: center;
         margin: 5rem auto;
         gap: 2rem;
+        transition: .5s;
     }
 
     input {
@@ -55,7 +56,7 @@
         padding: .5rem 1rem;
         font-size: 1.5rem;
         font-weight: 600;
-
+        transition: .5s;
     }
 
     button {
@@ -71,5 +72,4 @@
         transform: translate(0, -1px);
         transition: .2s;
     }
-
 </style>

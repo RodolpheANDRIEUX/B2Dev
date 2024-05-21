@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
-import db from "../prisma/db.js";
+import db from "/prisma/db.js";
 import {JWT_ACCESS_SECRET} from "$env/static/private";
-import { User } from '$lib/store.js';
 
 export const handle = async ({event, resolve}) => {
   const authCookie = event.cookies.get('AuthorizationToken');
@@ -29,4 +28,3 @@ export const handle = async ({event, resolve}) => {
 
   return await resolve(event);
 };
-

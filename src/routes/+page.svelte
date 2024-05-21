@@ -8,10 +8,10 @@
 
 <div class="flex-box">
     <div class="catch">
-        <h2>Creez et gerez vos evenements en un clic</h2>
+        <h2>Créez et gérez vos évènements en un clic</h2>
         <form class="form-select" method="POST" action="?/discover">
             <img src="/src/lib/img/pin.svg" alt="pin">
-            <select name="city">
+            <select name="city" required>
                 <option value=""  selected disabled>Choisissez une ville</option>
                 <option value="paris">Paris</option>
                 <option value="marseille">Marseille</option>

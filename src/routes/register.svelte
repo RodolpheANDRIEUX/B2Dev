@@ -1,16 +1,37 @@
 <script>
-import {cubicOut} from "svelte/easing";
-import {fly} from "svelte/transition";
+    export let form;
+    import { enhance } from '$app/forms';
+    import { fly } from "svelte/transition";
+    import {slide} from "svelte/transition";
+    import {cubicOut, quintOut} from "svelte/easing";
 </script>
 
-<form method="POST"
-      action="/?/register"
+<form class="form-login" method="POST" action="/?/register" use:enhance
       in:fly={{ delay: 200, x: 200, duration: 300, easing: cubicOut }}
-      out:fly={{ x: 200, duration: 200, easing: cubicOut }}
->
-    <input type="email" name="email" placeholder="Email Address"/>
-    <input type="password" name="password" placeholder="Password"/>
-    <input type="password" name="conf-password" placeholder="Confirm Password"/>
+      out:fly={{ x: 200, duration: 200, easing: cubicOut }}>
+
+    {#if form?.error }<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
+        {form.error}
+    </p>{/if}
+
+    {#if form?.missing && form?.missing.email}<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
+        The email field is required
+    </p>{/if}
+    <input name="email" type="email" placeholder="Email Address" value={form?.email ?? ''}
+           style="border-bottom: {(form?.missing && form?.missing.email) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
+
+    {#if form?.missing && form?.missing.password}<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
+        You forgot the password you fking idiot
+    </p>{/if}
+    <input type="password" name="password" placeholder="Password"
+           style="border-bottom: {(form?.missing && form?.missing.password) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
+
+    {#if form?.missing && form?.missing.password}<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
+        You forgot the password you fking idiot
+    </p>{/if}
+    <input type="password" name="password" placeholder="Password"
+           style="border-bottom: {(form?.missing && form?.missing.password) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
+
     <button>Register</button>
 </form>
 
@@ -22,13 +43,6 @@ import {fly} from "svelte/transition";
         margin: 0;
     }
 
-    h1 {
-        color: var(--color-theme-3);
-        font-size: 3rem;
-        font-weight: 600;
-        margin: 0;
-    }
-
     form {
         width: min(30rem, 80vw);
         display: flex;
@@ -36,6 +50,7 @@ import {fly} from "svelte/transition";
         align-items: center;
         margin: 5rem auto;
         gap: 2rem;
+        transition: .5s;
     }
 
     input {
@@ -47,17 +62,20 @@ import {fly} from "svelte/transition";
         padding: .5rem 1rem;
         font-size: 1.5rem;
         font-weight: 600;
-
+        transition: .5s;
     }
 
     button {
         background-color: var(--color-theme-1);
         color: var(--color-bg-0);
-        padding: .5rem 1rem;
-        font-size: 1.5rem;
-        cursor: pointer;
-        border-radius: 5px;
+        margin-left: .5rem;
+        padding: .9rem;
         border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transform: translate(0, -1px);
+        transition: .2s;
     }
-
 </style>

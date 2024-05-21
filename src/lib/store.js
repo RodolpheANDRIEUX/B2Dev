@@ -1,3 +1,1 @@
-import { writable } from 'svelte/store';
-
-export let User = writable(null);
+// store variables and functions

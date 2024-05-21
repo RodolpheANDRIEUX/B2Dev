@@ -16,4 +16,38 @@ model User {
   updatedAt DateTime @updatedAt
   email     String   @unique
   password  String
+  Group     Group?   @relation(fields: [groupId], references: [id])
+  groupId   String?
+  Event     Event?   @relation(fields: [eventId], references: [id])
+  eventId   String?
+  Post      Post[]
+}
+
+model Group {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  users     User[]
+}
+
+model Event {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  name       String
+  date       DateTime
+  attendees  User[]
+  popularity Int
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
 }
