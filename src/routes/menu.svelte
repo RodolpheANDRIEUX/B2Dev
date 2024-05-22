@@ -39,6 +39,18 @@
 {/if}
 
 <style>
+    .menu a {
+        font-size: 3em;
+        color: var(--color-bg-0);
+        text-decoration: none;
+        margin: .4em;
+        transition: .3s ease-in-out;
+    }
+
+    .menu a:hover {
+        transform: scale(1.1) translate(.5em, 0);
+    }
+
     .menu {
         position: fixed;
         top: 60px;
@@ -47,8 +59,7 @@
         height: 100vh;
         background-color: var(--color-theme-3);
         display: flex;
-        justify-content: center;
-        align-items: center;
+        padding-top: 2rem;
         flex-direction: column;
     }
 
