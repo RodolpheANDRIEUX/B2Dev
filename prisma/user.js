@@ -12,13 +12,23 @@ function createJWT(user) {
 
 export async function createUser(email, password) {
   try {
-    const user = await db.user.create({
+    const user = await db.user.findUnique({
+      where: {
+        email
+      }
+    });
+
+    if (user) {
+      return {error: 'User already exists'};
+    }
+
+    const newUser = await db.user.create({
       data: {
         email,
         password: await bcrypt.hash(password, 12)
       }
     });
-    const token = createJWT(user);
+    const token = createJWT(newUser);
 
     return {token};
   } catch (error) {

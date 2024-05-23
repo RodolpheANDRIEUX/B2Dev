@@ -6,10 +6,11 @@
     let checkbox;
     let menuOpen = false;
     let menu;
+    let links;
 
     onMount(() => {
         const handleClickOutside = (event) => {
-            if (menuOpen && !checkbox.contains(event.target) && !menu.contains(event.target) ) {
+            if (menuOpen && !checkbox.contains(event.target) && !menu.contains(event.target) || links.contains(event.target)) {
                 menuOpen = false;
             }
         };
@@ -32,9 +33,10 @@
 
 {#if menuOpen}
     <div class="menu" bind:this={menu} transition:slide={{ delay: 50, duration: 300, easing: quintOut, axis: 'x' }}>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href="/" bind:this={links}>Acceuil</a>
+        <a href="/create" bind:this={links}>Créer</a>
+        <a href="https://github.com/RodolpheANDRIEUX/B2Dev">A propos</a>
+        <a href="https://github.com/RodolpheANDRIEUX">Contact</a>
     </div>
 {/if}
 
@@ -43,12 +45,12 @@
         font-size: 3em;
         color: var(--color-bg-0);
         text-decoration: none;
-        margin: .4em;
-        transition: .3s ease-in-out;
+        padding: .4em 1em;
+        transition: .2s ease-in-out;
     }
 
     .menu a:hover {
-        transform: scale(1.1) translate(.5em, 0);
+        transform: translate(.5em, 0);
     }
 
     .menu {

@@ -1,8 +1,13 @@
 <script>
-    import {fade} from 'svelte/transition';
-    import {onMount, tick} from 'svelte';
+    import {fade, fly} from 'svelte/transition';
+    import {onMount} from 'svelte';
+    import {cubicOut} from "svelte/easing";
 
-    let option = "";
+    let option = '';
+    let question = "Créer un évènement ou un groupe ?";
+    let answer = '';
+    let link = '';
+    let step = 0;
     let mouseX;
     let mouseY;
 
@@ -24,7 +29,8 @@
     let startTime;
     let isAnimating = false;
     let isVisible = true;
-    let exit = false;
+    let questionVisible = true;
+
 
     // theme
 
@@ -49,7 +55,7 @@
             requestAnimationFrame(animate);
         } else {
             startTime = null;
-            if (exit) return;
+            questionVisible = true;
             isVisible = false;
             resetCardPos();
             let screenWidth = window.innerWidth;
@@ -68,7 +74,11 @@
 
     // pour x etant la position du curseur sur l'axe X allant de 0 à 1
     function defineOption(x){
-        option = x > 0.5 ? "Créer un EV3NT" : "Créer un Groupe";
+        if (step === 0) {
+            option = x > 0.5 ? "Créer un EV3NT" : "Créer un Groupe";
+        } else {
+            option = x > 0.5 ? "OUI" : "NON";
+        }
     }
 
     // turn a new card animation
@@ -144,16 +154,32 @@
         targetTranslateX = -50 + ((currentTranslateX + 50) * 8);
         targetTranslateY = 600;
 
+        questionVisible = false;
         percentageX > 0.5 ? swapLeft() : swapRight()
         requestAnimationFrame(animate); // launch animation
     }
 
     async function swapLeft(){
-
+        if (step === 0) {
+            step = 1;
+            answer = "évenement";
+            link = "/create/event";
+            question = "Vous souhaitez créer un " + answer + " ?";
+        } else {
+            window.location.href = link;
+        }
     }
 
     async function swapRight(){
-
+        if (step === 0) {
+            step = 1;
+            answer = "groupe";
+            link = "/create/group";
+            question = "Vous souhaitez créer un " + answer + " ?";
+        } else {
+            question = "Créer un évènement ou un groupe ?";
+            step = 0;
+        }
     }
 
     function easeInOut(t) {
@@ -172,6 +198,10 @@
 
 
 </script>
+
+{#if questionVisible}
+    <span class="question" transition:fly={{ y: -50, duration: 300, easing: cubicOut }}>{question}</span>
+{/if}
 
 <div id="cardDeck" class="card backCard"></div>
 
@@ -195,6 +225,17 @@
 
 
 <style>
+    .question {
+        position: fixed;
+        top: 15vh;
+        left: 50vw;
+        transform: translate(-50%, -50%);
+        font-size: 2.2rem;
+        font-weight: 600;
+
+        text-align: center;
+    }
+
     #outer-card {
         position: fixed;
         top: 0;
@@ -206,11 +247,11 @@
 
     .card {
         position: fixed;
-        height: 50vh;
-        width: 50vh;
+        height: min(50vh, 50vw);
+        width: min(50vh, 50vw);
         border-radius: 3vh;
         left: 50vw;
-        bottom: 15vh;
+        top: 30vh;
         transform: translate(-50%, 0);
         transition: 80ms ease-out;
     }
@@ -258,7 +299,7 @@
         width: 200%;
         top: 0;
         left: 0;
-        background: #00000050;
+        background: #00000080;
         text-align: center;
         color: #fff;
         transition: 80ms ease-out;
@@ -270,5 +311,6 @@
         left: 50%;
         font-size: 2rem;
         font-weight: 600;
+        view-transition-name: titleanswered;
     }
 </style>

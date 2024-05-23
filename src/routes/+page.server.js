@@ -50,7 +50,7 @@ export const actions = {
 
         setAuthToken({cookies, token});
 
-        throw  redirect(302, "/user-auth");
+        throw  redirect(302, "/");
     },
 
     discover: async ({request}) => {
