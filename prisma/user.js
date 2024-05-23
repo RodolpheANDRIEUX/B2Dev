@@ -10,7 +10,7 @@ function createJWT(user) {
   });
 }
 
-export async function createUser(email, password) {
+export async function createUser(email, password, city) {
   try {
     const user = await db.user.findUnique({
       where: {
@@ -25,6 +25,7 @@ export async function createUser(email, password) {
     const newUser = await db.user.create({
       data: {
         email,
+        city,
         password: await bcrypt.hash(password, 12)
       }
     });

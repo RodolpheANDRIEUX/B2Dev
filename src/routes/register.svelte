@@ -32,6 +32,20 @@
     <input type="password" name="password" placeholder="Password"
            style="border-bottom: {(form?.missing && form?.missing.password) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
 
+    <select name="city" required>
+        <option value=""  selected disabled>Choisissez une ville</option>
+        <option value="paris">Paris</option>
+        <option value="marseille">Marseille</option>
+        <option value="lyon">Lyon</option>
+        <option value="toulouse">Toulouse</option>
+        <option value="nice">Nice</option>
+        <option value="nantes">Nantes</option>
+        <option value="strasbourg">Strasbourg</option>
+        <option value="montpellier">Montpellier</option>
+        <option value="bordeaux">Bordeaux</option>
+        <option value="lille">Lille</option>
+    </select>
+
     <button>Register</button>
 </form>
 
@@ -41,6 +55,19 @@
         font-size: 1rem;
         font-weight: 600;
         margin: 0;
+    }
+
+    select {
+        background-color: var(--color-bg-0);
+        color: var(--color-text);
+        border: none;
+        border-bottom: var(--color-theme-1) 2px solid;
+        width: 20rem;
+        padding: .65rem .65rem .65rem 3rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 0;
     }
 
     form {

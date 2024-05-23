@@ -33,7 +33,7 @@ export const actions = {
 
     register:  async ({cookies, request}) => {
         const formData = Object.fromEntries(await request.formData());
-        const {email, password} = formData;
+        const {email, password, city} = formData;
 
         if (!email) {
             return fail(400, { email, missing: true });
@@ -41,7 +41,10 @@ export const actions = {
         if (!password) {
             return fail(400, { password, missing: true });
         }
-        const {error, token} = await createUser(email, password);
+        if (!city) {
+            return fail(400, { city, missing: true });
+        }
+        const {error, token} = await createUser(email, password, city);
 
         if (error) {
             console.log({error});

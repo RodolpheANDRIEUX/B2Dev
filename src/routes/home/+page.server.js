@@ -8,17 +8,22 @@ export const load = async ({locals}) => {
     }
 
     // get all user groups
-    const groups = await db.user.findUnique({
+    const userData = await db.user.findUnique({
         where: { id: user.id },
-        include: { Group: true }
+        include: { Groups: true, Events: true }
     });
-
-    // get all user events
-    const events = await db.user.findUnique({
-        where: { id: user.id },
-        include: { Event: true }
-    });
+    const groups = userData.Groups;
+    const events = userData.Events;
 
     // get 10 best events
-    
+    const bestEvents = await db.event.findMany({
+        take: 10,
+        orderBy: {popularity: 'desc'}
+    });
+
+    return {
+        groups,
+        events,
+        bestEvents
+    }
 };

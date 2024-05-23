@@ -16,11 +16,10 @@ model User {
   updatedAt DateTime @updatedAt
   email     String   @unique
   password  String
-  Group     Group?   @relation(fields: [groupId], references: [id])
-  groupId   String?
-  Event     Event?   @relation(fields: [eventId], references: [id])
-  eventId   String?
-  Post      Post[]
+  city      String
+  Groups    Group[]
+  Events    Event[]
+  Posts     Post[]
 }
 
 model Group {
@@ -28,7 +27,7 @@ model Group {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String
-  users     User[]
+  members   User[]
 }
 
 model Event {

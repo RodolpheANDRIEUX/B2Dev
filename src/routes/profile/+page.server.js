@@ -4,7 +4,7 @@ export const load = async ({locals}) => {
   const user = locals.user;
 
   if (!user) {
-    return redirect(303,'/login');
+    return redirect(303,'/');
   }
 
   return {user};

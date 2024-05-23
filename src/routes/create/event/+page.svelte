@@ -9,6 +9,9 @@
     <label for="eventName">Nom de l'évenement :</label>
     <input id="eventName" name="eventName" required />
 
+    <label for="eventDate">Date de l'évenement :</label>
+    <input type="date" id="eventDate" name="eventDate" required />
+
     <button>Créer l'Event</button>
 </form>
 
@@ -34,6 +37,7 @@
     input {
         font-size: 1.2em;
         padding: .5em;
+        margin-bottom: 1em;
     }
 
     button {
