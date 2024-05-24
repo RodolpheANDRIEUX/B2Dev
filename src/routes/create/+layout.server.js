@@ -5,4 +5,5 @@ export const load = async ({locals}) => {
     if (!user) {
         return redirect(303,'/');
     }
+    return user;
 };

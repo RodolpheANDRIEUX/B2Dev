@@ -27,7 +27,7 @@
            style="border-bottom: {(form?.missing && form?.missing.password) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
 
     {#if form?.missing && form?.missing.password}<p class="error" transition:slide={{ duration: 800, easing: quintOut }}>
-        You forgot the password you fking idiot
+        You forgot the password...
     </p>{/if}
     <input type="password" name="password" placeholder="Password"
            style="border-bottom: {(form?.missing && form?.missing.password) ? '#ff0000' : 'var(--color-theme-1)'} 2px solid;">
