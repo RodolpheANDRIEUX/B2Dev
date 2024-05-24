@@ -1,4 +1,5 @@
 import { createEvent } from '/prisma/event.js';
+import {redirect} from "@sveltejs/kit";
 
 export const actions = {
     default: async  ({ locals, request }) => {
@@ -8,5 +9,7 @@ export const actions = {
 
         const user = locals.user;
         await createEvent(eventName, eventDate, user.id);
+
+        redirect(301,'/');
     }
 };
